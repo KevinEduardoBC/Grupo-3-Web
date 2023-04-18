@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <div style="text-align: center;">
+        <h1>Registro de Usuarios</h1>
+      </div>
+
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Código</mat-label>
+        <input matInput required placeholder="Código" formControlName="id">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Nombres</mat-label>
+        <input matInput required placeholder="Nombres" formControlName="nombres">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Apellidos</mat-label>
+        <input matInput required placeholder="Apellidos" formControlName="apellidos">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Email</mat-label>
+        <input matInput required placeholder="Email" formControlName="email">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Contraseña</mat-label>
+        <input matInput required placeholder="Contraseña" formControlName="contrasena">
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-witdh">
+        <mat-label>Teléfono</mat-label>
+        <input matInput required placeholder="Teléfono" formControlName="telefono">
+      </mat-form-field>
+
+      <br>
+
+      <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+
+      <button mat-raised-button color="warn" routerLink="/usuarios">Cancelar</button>
+
+    </form>
+  </div>
+
+</body>
+
+</html>
