@@ -32,9 +32,21 @@ export class UsuarioService {
     this.listaCambio.next(listaNueva)
   }
 
-  getList(){
+  getList() {
     return this.listaCambio.asObservable()
   }
+
+
+  //métodos para actualizar
+
+  listId(id: number) {
+    return this.http.get<Usuario>(`${this.url}/${id}`)
+  }
+
+  update(usu: Usuario) {
+    return this.http.put(this.url + "/" + usu.id, usu)
+  }
+
 
 
 }

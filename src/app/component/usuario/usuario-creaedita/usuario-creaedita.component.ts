@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario';
 import * as moment from 'moment'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router, Params } from '@angular/router'
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class UsuarioCreaeditaComponent implements OnInit {
   form: FormGroup = new FormGroup({})
   usuario: Usuario = new Usuario()
 
-  constructor(private uS: UsuarioService, private router: Router) {
+  constructor(private uS: UsuarioService, private router: Router, private route: ActivatedRoute) {
 
   }
 
@@ -27,6 +27,13 @@ export class UsuarioCreaeditaComponent implements OnInit {
       email: new FormControl(),
       contrasena: new FormControl(),
       telefono: new FormControl()
+    })
+
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id']
+      this.edicion = data['id'] != null
+
+      this.init()
     })
   }
 
@@ -47,15 +54,46 @@ export class UsuarioCreaeditaComponent implements OnInit {
       this.form.value['telefono'].length > 0) {
 
 
-      this.uS.insert(this.usuario).subscribe(data => {
-        this.uS.list().subscribe(data => {
-          this.uS.setList(data)
+      if (this.edicion) {
+        //actualizar
+        this.uS.update(this.usuario).subscribe(() => {
+          this.uS.list().subscribe(data => {
+            this.uS.setList(data)
+          })
         })
-      })
+      }
+      else {
+        //registrar
+
+        this.uS.insert(this.usuario).subscribe(data => {
+          this.uS.list().subscribe(data => {
+            this.uS.setList(data)
+          })
+        })
+      }
 
       this.router.navigate(['usuarios'])
     }
-
-
   }
+
+  //actualizar
+  id: number = 0
+  edicion: boolean = false
+
+  init() {
+    if (this.edicion) {
+      this.uS.listId(this.id).subscribe(data => {
+        this.form = new FormGroup({
+          id: new FormControl(data.id),
+          nombres: new FormControl(data.nombres),
+          apellidos: new FormControl(data.apellidos),
+          email: new FormControl(data.email),
+          contrasena: new FormControl(data.contrasena),
+          telefono: new FormControl(data.telefono)
+        })
+      })
+    }
+  }
+
+
 }

@@ -7,6 +7,9 @@ const routes: Routes = [{
   path: 'usuarios', component: UsuarioComponent, children: [
     {
       path: 'nuevo', component: UsuarioCreaeditaComponent
+    },
+    {
+      path: 'edicion/:id', component: UsuarioCreaeditaComponent
     }
   ]
 }];

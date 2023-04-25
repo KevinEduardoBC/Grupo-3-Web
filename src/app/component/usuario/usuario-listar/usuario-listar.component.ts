@@ -12,7 +12,7 @@ export class UsuarioListarComponent implements OnInit {
   //lista: Usuario[] = []
 
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource();
-  displayedColumns: string[] = ['codigo', 'nombres', 'apellidos', 'email', 'contrasena', 'telefono']
+  displayedColumns: string[] = ['codigo', 'nombres', 'apellidos', 'email', 'contrasena', 'telefono', 'accion01']
   constructor(private uS: UsuarioService) {
 
   }
