@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+</head>
+<body>
+  <div class="container">
+  <div style="text-align: center;">
+  <h1>Registro de Publicaciones</h1>
+  </div>
+
+
+  <div style="text-align: center;">
+  <form [formGroup]="form" (submit)="aceptar()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Codigo:</mat-label>
+      <input matInput placeholder="codigo" formControlName="id">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Titulo:</mat-label>
+      <input matInput
+       required placeholder="Titulo" formControlName="Titulo">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripcion:</mat-label>
+      <input matInput
+       required placeholder="Descripcion" formControlName="Descripcion">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Publicacion:</mat-label>
+      <input matInput [matDatepicker]="picker1"
+      formControlName="Fecha_Publicacion" [max]="maxFecha">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Fecha de Desaparicion:</mat-label>
+      <input matInput [matDatepicker]="picker2"
+      formControlName="Fecha_Desaparicion" [max]="maxFecha">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Vigente:</mat-label>
+      <input matInput
+       required placeholder="Vigente" formControlName="Vigente">
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button color="primary" type="submit">Aceptar</button>
+    <button mat-raised-button color="warn" routerLink="/authors">Cancelar</button>
+
+    <p>{{mensaje}}</p>
+  </form>
+</div>
+</div>
+</body>
+</html>

@@ -1,18 +1,16 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsuarioComponent } from './component/usuario/usuario.component';
-import { UsuarioCreaeditaComponent } from './component/usuario/usuario-creaedita/usuario-creaedita.component';
+import { AuthorComponent } from './component/author/author.component';
+import { AuthorCreaditaComponent } from './component/author/author-creadita/author-creadita.component';
 
-const routes: Routes = [{
-  path: 'usuarios', component: UsuarioComponent, children: [
-    {
-      path: 'nuevo', component: UsuarioCreaeditaComponent
-    },
-    {
-      path: 'edicion/:id', component: UsuarioCreaeditaComponent
-    }
-  ]
-}];
+const routes: Routes = [
+  {
+    path:'authors',component:AuthorComponent,children:[
+      { path:'nuevo', component:AuthorCreaditaComponent },
+      {path:'edicion/:id', component:AuthorCreaditaComponent }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
